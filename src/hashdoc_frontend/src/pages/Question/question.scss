@@ -1,0 +1,127 @@
+@import "../../styles/variables.scss";
+
+
+.question{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    display: grid;
+    grid-template-columns: 60% 40%;
+
+    &_container{
+            display: flex;
+            flex-direction: column;
+            gap: 6rem;
+            padding: 2rem 2rem 2rem 5rem;
+
+            &_details{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+
+                h3{
+                    color: $blue-dark;
+                }
+                &_links{
+                    display: flex;
+                    gap: 2rem;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 500px;
+                    border: 1px solid $grey;
+                    border-radius: 5px;
+                    padding: 1rem;
+                    cursor: pointer;
+                    transition: $transition;
+
+                    img{
+                        width: 70px;
+                    }
+                    div{
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        h5{
+                            font-weight: 500;
+                        }
+                    }
+                }
+                &_links:hover{
+                    background-color: $border;
+                }
+                &_text{
+                    span{
+                        color: $blue-secondary;
+                    }
+                }
+            }
+    }
+    &_image{
+        background-image: url("../../assets/question_image.svg");
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+// media queries 
+
+@media screen and (max-width: 1000px) {
+    .question{
+        grid-template-columns: repeat(2, 1fr);
+        &_container{
+            padding: 2rem;
+            &_details{
+                &_links{
+                    width: 350px;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 800px) {
+    .question{
+       grid-template-columns: 100%;
+       &_image{
+        display: none;
+       }
+       &_container{
+        &_details{
+            &_links{
+                width: 500px;
+            }
+        }
+    }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .question{
+       &_container{
+        &_details{
+            &_links{
+                width: 400px;
+            }
+        }
+    }
+    }
+}
+@media screen and (max-width: 500px) {
+    .question{
+       &_container{
+        &_details{
+            &_links{
+                width: 320px;
+            }
+        }
+    }
+    }
+}

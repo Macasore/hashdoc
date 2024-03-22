@@ -1,30 +1,31 @@
-import { useState } from 'react';
-import { hashdoc_backend } from 'declarations/hashdoc_backend';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+const Question = lazy(() => import("./pages/Question/Question"));
+const HealthCareSignup = lazy(() => import("./pages/HealthCareSignUp/HealthCareSignup"));
+const PatientSignUp = lazy(() => import("./pages/PatientSignUp/PatientSignUp"));
+const Login = lazy(() => import('./pages/Login/Login'));
+const MedicalRecordsPatient = lazy(() => import('./pages/Patient/MedicalRecords/MedicalRecordsPatient'));
+const HealthcareDashboard = lazy(() => import("./pages/HealthcareProvider/HealthcareDashboard"));
+const PatientHome = lazy(() => import("./pages/Patient/PatientHome/PatientHome"))
+const PatientProfile = lazy(() => import("./pages/Patient/PatientProfile/PatientProfile"));
 
 function App() {
-  const [greeting, setGreeting] = useState('');
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    hashdoc_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
-
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Question />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/health-care-sign-up" element={<HealthCareSignup />} />
+          <Route path="/patient-sign-up" element={<PatientSignUp />} />
+          <Route path="/patient-medical-record" element={<MedicalRecordsPatient />} />
+          <Route path='/healthcare-dashboard' element={<HealthcareDashboard />} />
+          <Route path='/patient-home' element={<PatientHome />} />
+          <Route path='/patient-profile' element={<PatientProfile />} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 }
 

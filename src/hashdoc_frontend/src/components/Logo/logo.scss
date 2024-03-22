@@ -1,0 +1,23 @@
+@import "../../styles/variables.scss";
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+    width: fit-content;
+
+    img{
+        width: 50px;
+    }
+    p{
+        font-size: 1.2rem;
+        color: rgb(17, 17, 60);
+    }
+}
+@media screen and (max-width: 800px){
+    .logo{
+        p{
+            display: none;
+        }
+    }
+}
